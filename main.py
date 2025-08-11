@@ -52,11 +52,21 @@ def generate_post(topic):
 
 # ===== Lấy ảnh minh họa từ Pixabay =====
 def get_image():
-    url = f"https://pixabay.com/api/?key={PIXABAY_KEY}&q=family+kids&image_type=photo&orientation=horizontal"
-    r = requests.get(url).json()
-    if r.get("hits"):
-        return random.choice(r["hits"])["largeImageURL"]
-    return None
+    url = f"https://pixabay.com/api/?key={PIXABAY_KEY}&q=beautiful&image_type=photo"
+    r = requests.get(url)
+    
+    if r.status_code != 200:
+        raise Exception(f"Loi API Pixabay: {r.status_code}, noi dung: {r.text}")
+    
+    try:
+        data = r.json()
+    except Exception as e:
+        raise Exception(f"Loi parse JSON: {e}, noi dung: {r.text}")
+    
+    if "hits" not in data or len(data["hits"]) == 0:
+        raise Exception("Khong tim thay anh phu hop tu Pixabay")
+    
+    return data["hits"][0]["webformatURL"]
 
 # ===== Đăng bài lên Facebook =====
 def post_to_facebook(message, image_url=None):
