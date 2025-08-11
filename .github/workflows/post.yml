@@ -2,7 +2,7 @@ name: Auto Post Facebook
 
 on:
   schedule:
-    - cron: "0 2 * * *" # Chạy lúc 9:00 sáng VN (UTC+7)
+    - cron: "0 3 * * *" # Chạy lúc 10:00 sáng VN (UTC+7)
   workflow_dispatch: # Cho phép chạy thủ công
 
 jobs:
