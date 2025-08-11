@@ -24,7 +24,7 @@ jobs:
       - name: Run script
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          PIXABAY_API_KEY: ${{ secrets.PIXABAY_KEY }}
+          PIXABAY_KEY: ${{ secrets.PIXABAY_KEY }}
           PAGE_ID: ${{ secrets.PAGE_ID }}
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         run: python main.py
